@@ -208,8 +208,15 @@ var Main = (function (_super) {
         第二个参数是动画时间，以毫秒计。
         第三个参数是补间方程，即对动画区间内每个时间点的属性值设定分布。
         */
-        egret.Tween.get(this.headSculpture, { loop: true }).to({ x: this.headSculpture1.x }, 1500, egret.Ease.sineIn);
-        egret.Tween.get(this.headSculpture1, { loop: true }).to({ x: this.headSculpture.x }, 1500, egret.Ease.sineIn);
+        this.headSculptureTween = egret.Tween.get(this.headSculpture, { loop: true });
+        this.headSculpture1Tween = egret.Tween.get(this.headSculpture1, { loop: true });
+        //每个Tween对象按顺序执行逻辑
+        this.headSculptureTween.to({ x: this.headSculpture1.x }, 1500, egret.Ease.sineIn);
+        this.headSculpture1Tween.to({ x: this.headSculpture.x }, 1500, egret.Ease.sineIn);
+        this.headSculptureTween.to({ "rotation": 10 }, 500, egret.Ease.sineIn);
+        this.headSculptureTween.to({ "rotation": 0 }, 500, egret.Ease.sineIn);
+        this.headSculpture1Tween.to({ "rotation": 10 }, 500, egret.Ease.sineIn);
+        this.headSculpture1Tween.to({ "rotation": 0 }, 500, egret.Ease.sineIn);
         //改变字体内容及颜色
         this.change();
         //循环播放音乐
